@@ -26,6 +26,35 @@ auto-refreshes when files change on your hard drive.
 npm start
 ```
 
+---
+
+### **Debugging in Visual Studio Code**
+
+1. Add `launch.json` with following configuration
+
+   ```
+   {
+       "version": "0.2.0",
+       "configurations": [
+           {
+               "type": "java",
+               "name": "Debug (Attach)",
+               "request": "attach",
+               "hostName": "localhost",
+               "port": 8000
+           }
+       ]
+   }
+   ```
+
+2. Insted of first command `./mvnw` run this  
+   `.\mvnw spring-boot:run -D"spring-boot.run.jvmArguments"="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000"`
+3. In another terminal run second command `npm start`
+4. In Visual Studio Code go to `Run and Debug` and click Start with above configuration
+5. Now you can set breakpoints
+
+---
+
 Npm is also used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
 specifying a newer version in [package.json](package.json). You can also run `npm update` and `npm install` to manage dependencies.
 Add the `help` flag on any command to see how you can use it. For example, `npm help update`.
